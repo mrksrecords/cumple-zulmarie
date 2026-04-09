@@ -7,24 +7,23 @@
 <style>
 body{
     margin:0;
-    font-family: 'Arial';
+    font-family: Arial;
     background:#e7c7bb;
-    overflow-x:hidden;
+    overflow:hidden;
 }
 
-/* 🎉 Confetti */
-.confetti{
+/* 💕 Corazones */
+.heart{
     position:fixed;
-    width:8px;
-    height:8px;
-    background:red;
-    top:-10px;
-    animation: caer linear infinite;
+    bottom:-20px;
+    font-size:20px;
+    animation: subir linear forwards;
 }
 
-@keyframes caer{
+@keyframes subir{
     to{
-        transform: translateY(100vh) rotate(360deg);
+        transform: translateY(-110vh);
+        opacity:0;
     }
 }
 
@@ -34,10 +33,10 @@ body{
     padding:20px;
 }
 
-/* ✨ Texto neón animado */
+/* ✨ Texto neón */
 .neon{
     font-size:60px;
-    font-weight:bold;
+    cursor:pointer;
     animation: glow 1.5s infinite alternate;
 }
 
@@ -52,7 +51,7 @@ body{
     }
 }
 
-/* 🖼️ Imagen principal */
+/* 🖼️ Imagen */
 .main-img{
     width:300px;
     border-radius:10px;
@@ -66,23 +65,6 @@ body{
     padding:20px;
 }
 
-/* 🎈 Globos */
-.balloon{
-    position:fixed;
-    bottom:-100px;
-    width:40px;
-    height:60px;
-    background:pink;
-    border-radius:50%;
-    animation: subir 8s infinite;
-}
-
-@keyframes subir{
-    to{
-        transform: translateY(-120vh);
-    }
-}
-
 </style>
 </head>
 
@@ -90,7 +72,7 @@ body{
 
 <div class="container">
 
-<h1 class="neon">🎉 Feliz Cumpleaños 🎀</h1>
+<h1 class="neon" onclick="explosion()">🎉 Feliz Cumpleaños 🎀</h1>
 
 <img src="foto_principal.jpg" class="main-img">
 
@@ -107,27 +89,38 @@ Feliz día, Zulmarie ✨
 
 <script>
 
-/* 🎉 Generar confetti */
-for(let i=0;i<50;i++){
-    let conf = document.createElement("div");
-    conf.className="confetti";
-    conf.style.left=Math.random()*100+"vw";
-    conf.style.animationDuration=(Math.random()*3+2)+"s";
-    conf.style.background=["#ff4d6d","#ff85a1","#ffc2d1","#ffe5ec"][Math.floor(Math.random()*4)];
-    document.body.appendChild(conf);
+/* 💕 Corazones flotando automáticamente */
+function crearCorazon(){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+    heart.style.animationDuration=(Math.random()*3+3)+"s";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),5000);
 }
 
-/* 🎈 Generar globos */
-for(let i=0;i<10;i++){
-    let b=document.createElement("div");
-    b.className="balloon";
-    b.style.left=Math.random()*100+"vw";
-    b.style.background=["#ff4d6d","#ff85a1","#ffc2d1"][Math.floor(Math.random()*3)];
-    b.style.animationDuration=(Math.random()*5+5)+"s";
-    document.body.appendChild(b);
+setInterval(crearCorazon,300);
+
+/* 💥 Explosión de corazones al hacer clic */
+function explosion(){
+    for(let i=0;i<30;i++){
+        let heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="💗";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.fontSize=(Math.random()*25+20)+"px";
+        heart.style.animationDuration=(Math.random()*2+2)+"s";
+        document.body.appendChild(heart);
+
+        setTimeout(()=>heart.remove(),4000);
+    }
 }
 
 </script>
 
 </body>
 </html>
+
