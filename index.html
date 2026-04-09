@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Feliz Cumpleaños 💖</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial;
+    background:#e7c7bb;
+    overflow:hidden;
+}
+
+/* 💕 Corazones */
+.heart{
+    position:fixed;
+    bottom:-20px;
+    font-size:20px;
+    animation: subir linear forwards;
+}
+
+@keyframes subir{
+    to{
+        transform: translateY(-110vh);
+        opacity:0;
+    }
+}
+
+/* 🎀 Contenedor */
+.container{
+    text-align:center;
+    padding:20px;
+}
+
+/* ✨ Texto neón */
+.neon{
+    font-size:60px;
+    cursor:pointer;
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+    from{
+        color:#000;
+        text-shadow: 0 0 5px #ff4da6, 0 0 10px #ff4da6;
+    }
+    to{
+        color:#ff1493;
+        text-shadow: 0 0 20px #ff1493, 0 0 40px #ff69b4;
+    }
+}
+
+/* 🖼️ Imagen */
+.main-img{
+    width:300px;
+    border-radius:10px;
+    margin:20px 0;
+}
+
+/* 💌 Texto */
+.texto{
+    color:#ff2f6d;
+    font-size:20px;
+    padding:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 class="neon" onclick="explosion()">🎉 Feliz Cumpleaños 🎀</h1>
+
+<img src="foto_principal.jpg" class="main-img">
+
+<div class="texto">
+Que en este día tan tuyo, la vida te abrace con la calidez de quienes amas,  
+que las estrellas iluminen tu camino con más fuerza que nunca  
+y que tu alegría siempre sea más grande que cualquier sombra.  
+
+<br><br>
+Feliz día, Zulmarie ✨
+</div>
+
+</div>
+
+<script>
+
+/* 💕 Corazones flotando automáticamente */
+function crearCorazon(){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+    heart.style.animationDuration=(Math.random()*3+3)+"s";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),5000);
+}
+
+setInterval(crearCorazon,300);
+
+/* 💥 Explosión de corazones al hacer clic */
+function explosion(){
+    for(let i=0;i<30;i++){
+        let heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="💗";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.fontSize=(Math.random()*25+20)+"px";
+        heart.style.animationDuration=(Math.random()*2+2)+"s";
+        document.body.appendChild(heart);
+
+        setTimeout(()=>heart.remove(),4000);
+    }
+}
+
+</script>
+
+</body>
+</html>
